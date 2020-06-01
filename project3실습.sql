@@ -8,9 +8,9 @@
 #회원테이블(부모)
 create table member
 (
-name VARCHAR(100) NOT null,
 id VARCHAR(100) NOT null,
 pass VARCHAR(100) NOT NULL,
+name VARCHAR(100) NOT null,
 pnum VARCHAR(100),
 hnum VARCHAR(100) NOT null,
 email VARCHAR(100) NOT null,
@@ -25,4 +25,4 @@ primary key(id)
 
 DROP TABLE member;
 #더미데이터 삽입	
-INSERT INTO member (NAME, id, pass, pnum, hnum, email, addr) VALUES ('코스모61기', 'kosmo', '1234', '');
+INSERT INTO member (id, pass, name, pnum, hnum, email, addr) VALUES ('kosmo', '1234', '코스모61기'member, '', '010-0000-0001', 'kosmo61@naver.com', '서울 금천구 월드메르디앙2차');
