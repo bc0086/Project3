@@ -17,12 +17,12 @@ email VARCHAR(100) NOT null,
 addr VARCHAR(100) NOT null,
 regidate datetime default CURRENT_TIMESTAMP, 
 /* 
-	현재시간을 디폴트로 사용
+	현재시간을 디폴트로 사용member
 	datatime : 날짜와 시간을 동시에 표현할 수 있는 자료형
 */
-primary key(id)
+primary key(id)member
 );
-
+member
 DROP TABLE member;
 #더미데이터 삽입	
-INSERT INTO member (id, pass, name, pnum, hnum, email, addr) VALUES ('kosmo', '1234', '코스모61기'member, '', '010-0000-0001', 'kosmo61@naver.com', '서울 금천구 월드메르디앙2차');
+INSERT INTO member (id, pass, name, pnum, hnum, email, addr) VALUES ('kosmo', '1234', '코스모61기', '', '010-0000-0001', 'kosmo61@naver.com', '서울시 금천구 월드메르디앙2차');

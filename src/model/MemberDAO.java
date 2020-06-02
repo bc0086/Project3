@@ -1,5 +1,13 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MemberDAO {
 	
 	// 멤버변수(클래스 전체 멤버메소드에서 접근 가능)0
@@ -15,7 +23,7 @@ public class MemberDAO {
 	public MemberDAO(String driver, String url) {
 		try {
 			Class.forName(driver);
-			String id = "kosmo61_user";
+			String id = "suamil_user";
 			String pw = "1234";
 			con = DriverManager.getConnection(url, id, pw);
 			System.out.println("DB연결성공");

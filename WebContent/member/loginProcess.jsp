@@ -1,10 +1,18 @@
+<%@page import="java.util.Map"%>
+<%@page import="model.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <!-- 제목 : loginProcess.jsp -->
 <%
-	String id = request.getParameter("user_id");
+String id = request.getParameter("user_id");
 String pw = request.getParameter("user_pw");
+
+/* 쿠키3.
+checkbox의 경우 항목이 여러개이므로 주로 getParameterValues()를 통해
+배열로 받아와야하지만, 항목이 하나만 있는 경우에는 아래와 같이 처리가능하다.
+*/
+String id_save = request.getParameter("id_save");
 
 // MariaDB정보로 변경되므로 초기화 파라미터를 수정한다.
 String drv = application.getInitParameter("MariaJDBCDriver");
@@ -22,11 +30,34 @@ if(memberInfo.get("id") != null){
 	session.setAttribute("USER_PW", memberInfo.get("pass"));
 	session.setAttribute("USER_NAME", memberInfo.get("name"));
 	
-	response.sendRedirect("login.jsp");
+	if(id_save == null){		
+		// 아이디저장하기에 체크하지 않았을때...
+		// 쿠키를 삭제하기 위해 빈 쿠키를 생성한다.
+		Cookie ck = new Cookie("USER_ID", "");
+		ck.setPath(request.getContextPath());
+		ck.setMaxAge(0); // 유효시간이 0이므로 사용할 수 없는 쿠키가 된다.
+		response.addCookie(ck);
+	}
+	else{		
+		// 체크했을때...
+		// 사용자가 입력한 아이디로 쿠키를 생성한다.
+		Cookie ck = new Cookie("USER_ID", id);
+		System.out.println(request.getContextPath());
+		ck.setPath(request.getContextPath());
+		ck.setMaxAge(60*60*24*100);
+		response.addCookie(ck);
+	}
+	
+	// 로그인과 쿠키생성이 완료되면 기존 로그인 페이지로 이동한다.
+	response.sendRedirect("../main/main.jsp");
 }
 else{
-	// 저장된 값이 없다면, 리퀘스트 영역에 오류메세지를 저장하고 포워드한다.
-	request.setAttribute("ERROR_MSG", "넌 회원이 아니다.");
-	request.getRequestDispatcher("login.jsp").forward(request,response);
+	// 실패시
+%>
+	<script>
+		alert("로그인에 실패하였습니다.");
+		history.go(-1);
+	</script>
+<%
 }
 %>

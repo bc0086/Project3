@@ -1,5 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+   
+<%
+// 리퀘스트 내장객체를 이용하여 쿠키를 읽어온다.
+Cookie[] cookies = request.getCookies();
+
+// 쿠키에 저장된 아이디를 저장할 변수 생성
+String user = "";
+
+// 쿠키가 존재한다면 전체에서 USER_ID라는 쿠키명이 있는지 찾는다.
+if(cookies!=null){
+	for(Cookie ck : cookies){
+		if(ck.getName().equals("USER_ID")){
+			
+			// 찾았다면 쿠키에 저장된 쿠키값을 변수에 저장한다.
+			user = ck.getValue();
+		}
+	}
+}
+%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,29 +51,69 @@
 							<col width="120px" />
 							<col width="55px" />
 						</colgroup>
+						
+						
+					<%
+					// 로그인 전이거나 로그인에 실패했을때 출력되는 내용
+					if(session.getAttribute("USER_ID")==null){
+					%>
+						<script>
+						function loginValidate1(fn){
+							if(!fn.user_id.value){
+								alert("아이디를 입력하세요.");
+								fn.user_id.focus();
+								return false;
+							}
+							if(fn.user_pw.value==""){
+								alert("패스워드를 입력하세요");
+								fn.user_pw.focus();
+								return false;
+							}
+						}
+						</script>
+						
+						<!-- 로그인 폼 -->
+						<form action="../member/loginProcess.jsp" mehtod="post" id="login" onsubmit="return loginValidate1(this);">
 						<tr>
 							<th><img src="../images/login_tit01.gif" alt="아이디" /></th>
-							<td><input type="text" name="" value="" class="login_input" /></td>
+							<!-- 쿠키1. 변수user에 저장된 값이 있다면 value속성에 삽입 -->
+							<td><input type="text" name="user_id" class="login_input" value="<%= user==null ? "" : user %>"/></td>
+							
 							<td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" /></td>
 						</tr>
 						<tr>
 							<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-							<td><input type="text" name="" value="" class="login_input" /></td>
+							<td><input type="password" name="user_pw" class="login_input" /></td>
 						</tr>
+						
+
 					</table>
+					<table>
+					<tr>
+					<td>
 					<p>
-						<input type="checkbox" name="" value="" /><img src="../images/login_tit03.gif" alt="저장" />
+						<!-- 쿠키2. 변수user에 저장된 값이 있을때 checkbox의 checked속성을 활성화. -->
+						<input type="checkbox" name="id_save" value="Y" 
+							<% if(user.length()!=0){ %>
+								checked="checked"
+							<% } %>
+							/><img src="../images/login_tit03.gif" alt="저장" />
 						<a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>
 						<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
 					</p>
-					 
-					<!-- 로그인 후. -->
-					<!-- <p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">000님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
+					</form>
+					<% }else{ %>
+						<!-- 로그인에 성공했을때 출력되는 화면 -->
+					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">
+						<%=session.getAttribute("USER_ID") %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
 					<p style="text-align:right; padding-right:10px;">
 						<a href=""><img src="../images/login_btn04.gif" /></a>
-						<a href=""><img src="../images/login_btn05.gif" /></a>
-					</p> -->
-			 
+						<a href="../member/logout.jsp"><img src="../images/login_btn05.gif" /></a>
+					</p>
+					<% } %>
+					</td>
+					</tr>
+					</table>
 				</div>
 			</div>
 			<div class="main_con_center">
