@@ -8,17 +8,68 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
     <script>
+    
     $(function(){
+			
+	/* 비밀번호 및 비밀번호 확인기능 */
+		//조건1 : 비밀번호
+		$('#pwd1').keyup(function(){
+			//input태그의 value속성을 빈값으로 만들어준다.
+			$("#pwd2").val("");
+			//암호를 재입력시에는 msg부분의 텍스트도 지워준다.
+			$('#msg').text('');
+		});
+		
+		//조건2 : 비밀번호 확인 ->참고해서 .html + .css결합할것!
+		$('#pwd2').keyup(function(){
+			//패스워드 입력란에 입력된 내용을 가져온다.
+			var compareStr1 = $('#pwd1').val();
+			var compareStr2 = $(this).val();
+
+			if(compareStr1==compareStr2){
+				//암호가 일치하면 파란색 텍스트
+				$('#msg').html('<b style="color:blue;">암호가 일치합니다.</b>');
+			}
+			else{
+				//일치하지 않으면 붉은색 텍스트
+				$('#msg').html('<b>암호가 틀립니다.</b>').css('color','red');
+			}
+		});
+		
+	/* 전화번호 */
+		$('#tel1').keyup(function(){
+			if($('#tel1').val().length==3){
+				$('#tel2').focus();
+			}
+		});
+		
+		$('#tel2').keyup(function(){
+			if($('#tel2').val().length==4){
+				$('#tel3').focus();
+			}
+		});
+		
+	/* 핸드폰번호 */
+		$('#mobile1').keyup(function () {
+			if($('#mobile1').val().length==3){
+				$('#mobile2').focus();
+			}
+		});
+	
+		$('#mobile2').keyup(function () {
+			if($('#mobile2').val().length==4){
+				$('#mobile3').focus();
+			}
+		});
+			
+	/* 이메일 */
     	// 이메일 select선택시 도메인 부분 채워주기
         $('#last_email_check2').change(function(){
-            // alert("이메일 선택됨");
             // option태그 사이의 텍스트를 읽어온다.
             var text = $('#last_email_check2 option:selected').text();
 
             // value속성에 지정된 값을 읽어온다.
             var value = $('#last_email_check2 option:selected').val();
-
-            //alert("선택한 항목의 text:"+text+", value:"+value);
 
             if(value==''){ // 선택하세요를 선택
                 $('#email_2').attr('readonly', true);
@@ -36,6 +87,7 @@
         });	
     });
     
+    /* 주소API */
     function zipFind() {
     	new daum.Postcode({
     		oncomplete: function(data) {
@@ -46,7 +98,7 @@
                 var roadAddr = data.roadAddr; // 도로명 주소 변수
                 var extraAddr = ''; // 참고 항목 변수
                 
-            	 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            	// 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                     extraAddr += data.bname;
@@ -89,9 +141,45 @@
                 }
     		}
     	}).open();
+    }	
+    
+    /* 아이디 체크 */
+    function id_check_person(){
+    	var re = /^[A-Za-z0-9+]{4,12}$/; // 아이디가 적합한지 검사할 정규식(Regular Expressions)
+    	var id = document.getElementById("id");
+    	
+    	if(!idcheck(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+            return false;
+        }
     }
     
+    function idcheck(re, what, message) {
+        if(re.test(what.value)) {
+            return true;
+        }
+        alert(message);
+        what.value = "";
+        what.focus();
+    }
     
+   /*  비밀번호 체크
+ 	function pw_check_person(){
+    	var re = /^[A-Za-z0-9+]{4,12}$/; // 패스워드가 적합한지 검사할 정규식(Regular Expressions)
+    	var pw = document.getElementById("pw");
+    	
+    	if(!pwcheck(re,pw,"비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+            return false;
+        }
+    }
+    
+    function pwcheck(re, what, message) {
+        if(re.test(what.value)) {
+            return true;
+        }
+        alert(message);
+        what.value = "";
+        what.focus();
+    } */
     
     
     </script>
@@ -126,39 +214,47 @@
 					<tr><!-- 아이디 -->
 						<th><img src="../images/join_tit002.gif" /></th>
 						<td>
-							<input type="text" name="id"  value="" class="join_input" />&nbsp;
+							<input type="text" name="id"  id="id" class="join_input" />&nbsp;
 							<a onclick="id_check_person();" style="cursor:hand;">
 								<img src="../images/btn_idcheck.gif" alt="중복확인"/>
 							</a>&nbsp;&nbsp;
 							<span>* 4자 이상 12자 이내의 영문/숫자 조합하여 공백 없이 기입</span>
 						</td>
 					</tr>
+					
+					<!-- 비밀번호 -->
 					<tr>
 						<th><img src="../images/join_tit003.gif" /></th>
-						<td><input type="password" name="pass" value="" class="join_input" />&nbsp;&nbsp;<span>* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
-					</tr>
-					<tr>
-						<th><img src="../images/join_tit04.gif" /></th>
-						<td><input type="password" name="pass2" value="" class="join_input" /></td>
+						<td><input type="password" name="pass1" id="pwd1" class="join_input" onclick="pw_check_person();"/>&nbsp;&nbsp;<span>* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
 					</tr>
 					
-
+					<!-- 비밀번호 확인 -->
+					<tr>
+						<th><img src="../images/join_tit04.gif" /></th>
+						<td><input type="password" name="pass2" id="pwd2" class="join_input" />&nbsp;&nbsp;<span id="msg"/></td>
+					</tr>
+					
+					<!-- 전화번호 -->
 					<tr>
 						<th><img src="../images/join_tit06.gif" /></th>
 						<td>
-							<input type="text" name="tel1" value="" maxlength="3" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
-							<input type="text" name="tel2" value="" maxlength="4" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
-							<input type="text" name="tel3" value="" maxlength="4" class="join_input" style="width:50px;" />
+							<input type="text" name="tel1" id="tel1" maxlength="3" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
+							<input type="text" name="tel2" id="tel2" maxlength="4" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
+							<input type="text" name="tel3" id="tel3" maxlength="4" class="join_input" style="width:50px;" />
 						</td>
 					</tr>
+					
+					<!-- 핸드폰번호 -->
 					<tr>
 						<th><img src="../images/join_tit07.gif" /></th>
 						<td>
-							<input type="text" name="mobile1" value="" maxlength="3" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
-							<input type="text" name="mobile2" value="" maxlength="4" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
-							<input type="text" name="mobile3" value="" maxlength="4" class="join_input" style="width:50px;" /></td>
+							<input type="text" name="mobile1" id="mobile1" maxlength="3" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
+							<input type="text" name="mobile2" id="mobile2" maxlength="4" class="join_input" style="width:50px;" />&nbsp;-&nbsp;
+							<input type="text" name="mobile3" id="mobile3" maxlength="4" class="join_input" style="width:50px;" /></td>
 					</tr>
-					<tr><!-- 이메일 -->
+					
+					<!-- 이메일 -->
+					<tr>
 						<th><img src="../images/join_tit08.gif" /></th>
 						<td>
  
