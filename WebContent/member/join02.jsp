@@ -10,17 +10,30 @@
     <script>
     
     $(function(){
-			
+    	// 정규식(Regular Expressions)
+    	var ipre = /^[A-Za-z0-9+]{4,12}$/; // 아이디, 비밀번호용
+    	var pnre = /^\d{2,3}-\d{3,4}-\d{4}$/; // 전화번호용
+    	var hnre = /^\d{3}-\d{3,4}-\d{4}$/; // 핸드폰용
+    	
 	/* 비밀번호 및 비밀번호 확인기능 */
 		//조건1 : 비밀번호
 		$('#pwd1').keyup(function(){
+			
 			//input태그의 value속성을 빈값으로 만들어준다.
 			$("#pwd2").val("");
 			//암호를 재입력시에는 msg부분의 텍스트도 지워준다.
-			$('#msg').text('');
+			$('#pnmsg2').text('');
+			
+			if(ipre.test($('#pwd1').val())){
+				$('#pnmsg1').html('<b style="color:blue;">사용가능한 비밀번호입니다.</b>');
+			}
+			else{
+				$('#pnmsg1').html('<b>4자 이상 12자 이내의 영문/숫자를 조합해주세요.</b>').css('color','red');
+				
+			}
 		});
 		
-		//조건2 : 비밀번호 확인 ->참고해서 .html + .css결합할것!
+		//조건2 : 비밀번호 확인
 		$('#pwd2').keyup(function(){
 			//패스워드 입력란에 입력된 내용을 가져온다.
 			var compareStr1 = $('#pwd1').val();
@@ -28,13 +41,33 @@
 
 			if(compareStr1==compareStr2){
 				//암호가 일치하면 파란색 텍스트
-				$('#msg').html('<b style="color:blue;">암호가 일치합니다.</b>');
+				$('#pnmsg2').html('<b style="color:blue;">비밀번호가 일치합니다.</b>');
 			}
 			else{
 				//일치하지 않으면 붉은색 텍스트
-				$('#msg').html('<b>암호가 틀립니다.</b>').css('color','red');
+				$('#pnmsg2').html('<b>비밀번호를 확인해주세요.</b>').css('color','red');
 			}
 		});
+    	
+    	
+    /* 아이디 */
+		$('#id').keyup(function(){
+			//패스워드 입력란에 입력된 내용을 가져온다.
+
+			if(ipre.test($('#id').val())){
+				$('#idmsg').html('<b style="color:blue;">사용가능한 아이디입니다.</b>');
+			}
+			else{
+				$('#idmsg').html('<b>4자 이상 12자 이내의 영문/숫자를 조합해주세요.</b>').css('color','red');
+				
+			}
+		});
+    	
+    	
+    	
+    	
+    	
+    	
 		
 	/* 전화번호 */
 		$('#tel1').keyup(function(){
@@ -142,45 +175,7 @@
     		}
     	}).open();
     }	
-    
-    /* 아이디 체크 */
-    function id_check_person(){
-    	var re = /^[A-Za-z0-9+]{4,12}$/; // 아이디가 적합한지 검사할 정규식(Regular Expressions)
-    	var id = document.getElementById("id");
-    	
-    	if(!idcheck(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-            return false;
-        }
-    }
-    
-    function idcheck(re, what, message) {
-        if(re.test(what.value)) {
-            return true;
-        }
-        alert(message);
-        what.value = "";
-        what.focus();
-    }
-    
-   /*  비밀번호 체크
- 	function pw_check_person(){
-    	var re = /^[A-Za-z0-9+]{4,12}$/; // 패스워드가 적합한지 검사할 정규식(Regular Expressions)
-    	var pw = document.getElementById("pw");
-    	
-    	if(!pwcheck(re,pw,"비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-            return false;
-        }
-    }
-    
-    function pwcheck(re, what, message) {
-        if(re.test(what.value)) {
-            return true;
-        }
-        alert(message);
-        what.value = "";
-        what.focus();
-    } */
-    
+  
     
     </script>
 </head>
@@ -218,20 +213,20 @@
 							<a onclick="id_check_person();" style="cursor:hand;">
 								<img src="../images/btn_idcheck.gif" alt="중복확인"/>
 							</a>&nbsp;&nbsp;
-							<span>* 4자 이상 12자 이내의 영문/숫자 조합하여 공백 없이 기입</span>
+							<span id="idmsg">* 4자 이상 12자 이내의 영문/숫자 조합하여 공백 없이 기입</span>
 						</td>
 					</tr>
 					
 					<!-- 비밀번호 -->
 					<tr>
 						<th><img src="../images/join_tit003.gif" /></th>
-						<td><input type="password" name="pass1" id="pwd1" class="join_input" onclick="pw_check_person();"/>&nbsp;&nbsp;<span>* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
+						<td><input type="password" name="pass1" id="pwd1" class="join_input" onclick="pw_check_person();"/>&nbsp;&nbsp;<span id="pnmsg1">* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
 					</tr>
 					
 					<!-- 비밀번호 확인 -->
 					<tr>
 						<th><img src="../images/join_tit04.gif" /></th>
-						<td><input type="password" name="pass2" id="pwd2" class="join_input" />&nbsp;&nbsp;<span id="msg"/></td>
+						<td><input type="password" name="pass2" id="pwd2" class="join_input" />&nbsp;&nbsp;<span id="pnmsg2"/></td>
 					</tr>
 					
 					<!-- 전화번호 -->
