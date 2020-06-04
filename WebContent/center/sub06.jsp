@@ -3,6 +3,8 @@
 <%@ include file="../include/global_head.jsp" %>
 
 
+<!-- 맵 API -->
+
  <body>
 	<center>
 	<div id="wrap">
@@ -20,9 +22,34 @@
 					<img src="../images/center/sub07_title.gif" alt="오시는길" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;센터소개&nbsp;>&nbsp;오시는길<p>
 				</div>
+				
 				<div class="con_box">
 					<p class="con_tit"><img src="../images/center/sub07_tit01.gif" alt="오시는길" /></p>
-					<img src="../images/center/sub07_img01.gif" class="con_img"/>
+					
+					<!-- 맵 API -->
+					<div id="map" style="width:500px;height:400px;"></div>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78db85dbed7e80b54f5e797fabb30829"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(37.574345, 126.889873), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+	
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 마커가 표시될 위치입니다 
+	var markerPosition  = new kakao.maps.LatLng(37.574345, 126.889873); 
+	
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition
+	});
+	
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+	</script>
+					
 					<p class="con_tit"><img src="../images/center/sub07_tit02.gif" alt="자가용 오시는길" /></p>
 					<div class="in_box">
 						<p class="dot_tit">강북 방향</p>

@@ -107,7 +107,7 @@ if(cookies!=null){
 					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">
 						<%=session.getAttribute("USER_ID") %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
 					<p style="text-align:right; padding-right:10px;">
-						<a href=""><img src="../images/login_btn04.gif" /></a>
+						<a href="../member/join02.jsp"><img src="../images/login_btn04.gif" /></a>
 						<a href="../member/logout.jsp"><img src="../images/login_btn05.gif" /></a>
 					</p>
 					<% } %>

@@ -145,4 +145,54 @@ public class MemberDAO {
 		}
 		return maps;
 	}
+
+	public int getJoin(MemberDTO dto){
+		
+		String query = " INSERT into member(name, id, pass, pnum, hnum, email, addr) "
+				 +" values ( ? , ?, ?, ?, ?, ?, ?) ";
+		int affected =0;
+		
+		try{
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getId());
+			psmt.setString(3, dto.getPass());
+			psmt.setString(4, dto.getPnum());
+			psmt.setString(5, dto.getHnum());
+			psmt.setString(6, dto.getEmail());
+			psmt.setString(7, dto.getAddr());
+			affected  = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("getMemberDTO오류");
+			e.printStackTrace();
+		}
+		return affected;
+	}
+	
+		// 아이디찾기
+	   public Map<String, String> getIdMap(String name, String email) {
+
+	      Map<String, String> maps = new HashMap<String, String>();
+
+	      String query = "SELECT id FROM " + " membership WHERE name=? and email=?";
+	      try {
+	         psmt = con.prepareStatement(query);
+	         psmt.setString(1, name);
+	         psmt.setString(2, email);
+	         rs = psmt.executeQuery();
+
+	         if (rs.next()) {
+	            maps.put("id", rs.getString("id"));
+	         } else {
+	            System.out.println("결과셋이 없습니다.");
+	         }
+	      } catch (Exception e) {
+	         System.out.println("getMemberDTO오류");
+	         e.printStackTrace();
+	      }
+
+	      return maps;
+
+	   }
 }

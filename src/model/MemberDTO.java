@@ -20,7 +20,9 @@ public class MemberDTO {
 	private java.sql.Date regidate;
 
 	// 기본 생성자
-	public MemberDTO() {}
+	public MemberDTO() {
+		
+	}
 	
 	// 인자 생성자
 	public MemberDTO(String id, String pass, String name, String pnum, String hnum, String email, String addr, Date regidate) {
