@@ -175,7 +175,7 @@ public class MemberDAO {
 
 	      Map<String, String> maps = new HashMap<String, String>();
 
-	      String query = "SELECT id FROM " + " membership WHERE name=? and email=?";
+	      String query = "SELECT id FROM " + " member WHERE name=? and email=?";
 	      try {
 	         psmt = con.prepareStatement(query);
 	         psmt.setString(1, name);

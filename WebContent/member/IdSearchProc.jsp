@@ -13,7 +13,7 @@
    String name = request.getParameter("name");
    String email = request.getParameter("email");
    
-   //jsp에서 JSON을 사용하기 위해 확장라이브러리 설치후 객체를 생성한다.
+   // jsp에서 JSON을 사용하기 위해 확장라이브러리 설치후 객체를 생성한다.
    JSONObject json = new JSONObject();
    MemberDAO dao = new MemberDAO(drv, url);
    Map<String, String> memberInfo = dao.getIdMap(name, email);

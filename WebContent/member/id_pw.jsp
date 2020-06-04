@@ -5,16 +5,9 @@
 
 
 <script>
-
-	$(function() {
-		$('#butt1').click(function() {
-			alert();
-		});
-	});
 	$(function(){   
 	   //아이디찾기
-	   $('#butt').click(function(){
-		   alert("dsad");
+	   $('#idbtn').click(function(){
 	      //인자1 : 전송할 서버의 URL(경로)
 	      $.post(
 	         'IdSearchProc.jsp',
@@ -45,9 +38,7 @@
 	            }
 	            //아이디 없을때
 	            else{
-	               $('#mo1').click();
-	               $('#modal_res').html("아이디 존재안함");
-	               $('#name').focus();
+	            	alert('회원이 아닙니다.');
 	            }
 	         }
 	         );
@@ -76,8 +67,9 @@
 							<li><input type="text" id="id" class="login_input01" /></li>
 							<li><input type="text" id="pw" class="login_input01" /></li>
 						</ul>
-						<!-- 아이디 비번 찾기 -->
-						<button type="button" id="butt2"><img src="../images/member/id_btn01.gif" class="id_btn" id="butt" /></button>
+						
+						<!-- 아이디 찾기 -->
+						<button type="button" name="idbtn" id="idbtn" ><img src="../images/member/id_btn01.gif" class="id_btn" /></button>
 						
 						<a href="../main/main.jsp"><img src="../images/login_btn03.gif" class="id_btn02" /></a>
 					</div>
@@ -87,7 +79,9 @@
 							<li><input type="text" name="" value="" class="login_input01" /></li>
 							<li><input type="text" name="" value="" class="login_input01" /></li>
 						</ul>
-						<button type="button" id="butt1"><img src="../images/member/id_btn01.gif" class="pw_btn" /></button>
+						
+						<!-- 비밀번호 찾기 -->
+						<button type="button" name="pwbtn" id="pwbtn"><img src="../images/member/id_btn01.gif" class="pw_btn" /></button>
 					</div>
 				</div>
 			</div>
