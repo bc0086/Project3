@@ -11,8 +11,9 @@
 @import url("../css/sub.css");
 </style>
 
-<link href="../bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="../bootstrap3.3.7/jquery/jquery-3.2.1.min.js"></script>				
-<script src="../bootstrap3.3.7/js/bootstrap.min.js"></script>
+<link href="../common/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">				
+<script src="../common/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+
+<script src="../common/jquery/jquery-3.5.1.min.js"></script>
 
 </head>
