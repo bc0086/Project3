@@ -1,8 +1,7 @@
 <%@page import="model.MemberDTO"%>
 <%@page import="java.util.Map"%>
 <%@page import="model.MemberDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 제목 : joinProcess.jsp -->
 <%
@@ -19,7 +18,6 @@ String drv = application.getInitParameter("MariaJDBCDriver");
 String url = application.getInitParameter("MariaConnectURL");
 
 MemberDAO dao = new MemberDAO(drv, url);
-
 MemberDTO dto = new MemberDTO();
 
 dto.setName(name);
@@ -33,16 +31,15 @@ dto.setAddr(addr);
 int affected = dao.getJoin(dto);
 
 if(affected==1){
-	%>
+%>
 	<script>
-	alert("회원가입에 성공하였습니다.");
-	window.location="../main/main.jsp";
+		alert("회원가입에 성공하였습니다.");
+		window.location="../main/main.jsp";
 	</script>
-	<%
-}
-else{
+<%
+}else{
+%>
 	// 저장된 값이 없다면, 리퀘스트 영역에 오류메세지를 저장하고 포워드한다.
-	%>
 	<script>
 		alert("회원가입에 실패하였습니다.");
 		history.go(-1);

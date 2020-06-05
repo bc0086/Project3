@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-   
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
 <%
 // 리퀘스트 내장객체를 이용하여 쿠키를 읽어온다.
 Cookie[] cookies = request.getCookies();
@@ -52,10 +50,9 @@ if(cookies!=null){
 							<col width="55px" />
 						</colgroup>
 						
-						
 					<%
 					// 로그인 전이거나 로그인에 실패했을때 출력되는 내용
-					if(session.getAttribute("USER_ID")==null){
+					if(session.getAttribute("USER_ID")==null){ 
 					%>
 						<script>
 						function loginValidate1(fn){
@@ -64,6 +61,7 @@ if(cookies!=null){
 								fn.user_id.focus();
 								return false;
 							}
+							
 							if(fn.user_pw.value==""){
 								alert("패스워드를 입력하세요");
 								fn.user_pw.focus();
@@ -76,18 +74,18 @@ if(cookies!=null){
 						<form action="../member/loginProcess.jsp" mehtod="post" id="login" onsubmit="return loginValidate1(this);">
 						<tr>
 							<th><img src="../images/login_tit01.gif" alt="아이디" /></th>
+							
 							<!-- 쿠키1. 변수user에 저장된 값이 있다면 value속성에 삽입 -->
 							<td><input type="text" name="user_id" class="login_input" value="<%= user==null ? "" : user %>"/></td>
-							
 							<td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" /></td>
 						</tr>
+						
 						<tr>
 							<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
 							<td><input type="password" name="user_pw" class="login_input" /></td>
 						</tr>
-						
-
 					</table>
+					
 					<table>
 					<tr>
 					<td>
@@ -103,7 +101,7 @@ if(cookies!=null){
 					</p>
 					</form>
 					<% }else{ %>
-						<!-- 로그인에 성공했을때 출력되는 화면 -->
+					<!-- 로그인에 성공했을때 출력되는 화면 -->
 					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">
 						<%=session.getAttribute("USER_ID") %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
 					<p style="text-align:right; padding-right:10px;">
@@ -125,6 +123,7 @@ if(cookies!=null){
 					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
 				</ul>
 			</div>
+			
 			<div class="main_con_right">
 				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="/space/sub03.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 				<ul class="main_board_list">
@@ -141,6 +140,7 @@ if(cookies!=null){
 				<p class="main_title"><img src="../images/main_title04.gif" alt="월간일정 CALENDAR" /></p>
 				<img src="../images/main_tel.gif" />
 			</div>
+			
 			<div class="main_con_center">
 				<p class="main_title" style="border:0px; margin-bottom:0px;"><img src="../images/main_title05.gif" alt="월간일정 CALENDAR" /></p>
 				<div class="cal_top">
@@ -150,6 +150,7 @@ if(cookies!=null){
 							<col width="*" />
 							<col width="13px;" />
 						</colgroup>
+						
 						<tr>
 							<td><a href=""><img src="../images/cal_a01.gif" style="margin-top:3px;" /></a></td>
 							<td><img src="../images/calender_2012.gif" />&nbsp;&nbsp;<img src="../images/calender_m1.gif" /></td>
@@ -157,6 +158,7 @@ if(cookies!=null){
 						</tr>
 					</table>
 				</div>
+				
 				<div class="cal_bottom">
 					<table cellpadding="0" cellspacing="0" border="0" class="calendar">
 						<colgroup>
@@ -177,6 +179,7 @@ if(cookies!=null){
 							<th><img src="../images/day06.gif" alt="F" /></th>
 							<th><img src="../images/day07.gif" alt="S" /></th>
 						</tr>
+						
 						<tr>
 							<td><a href="">&nbsp;</a></td>
 							<td><a href="">&nbsp;</a></td>
@@ -186,6 +189,7 @@ if(cookies!=null){
 							<td><a href="">2</a></td>
 							<td><a href="">3</a></td>
 						</tr>
+						
 						<tr>
 							<td><a href="">4</a></td>
 							<td><a href="">5</a></td>
@@ -195,6 +199,7 @@ if(cookies!=null){
 							<td><a href="">9</a></td>
 							<td><a href="">10</a></td>
 						</tr>
+						
 						<tr>
 							<td><a href="">11</a></td>
 							<td><a href="">12</a></td>
@@ -204,6 +209,7 @@ if(cookies!=null){
 							<td><a href="">16</a></td>
 							<td><a href="">17</a></td>
 						</tr>
+						
 						<tr>
 							<td><a href="">18</a></td>
 							<td><a href="">19</a></td>
@@ -213,6 +219,7 @@ if(cookies!=null){
 							<td><a href="">23</a></td>
 							<td><a href="">24</a></td>
 						</tr>
+						
 						<tr>
 							<td><a href="">25</a></td>
 							<td><a href="">26</a></td>
@@ -222,6 +229,7 @@ if(cookies!=null){
 							<td><a href="">30</a></td>
 							<td><a href="">31</a></td>
 						</tr>
+						
 						<tr>
 							<td><a href="">&nbsp;</a></td>
 							<td><a href="">&nbsp;</a></td>
@@ -234,6 +242,7 @@ if(cookies!=null){
 					</table>
 				</div>
 			</div>
+			
 			<div class="main_con_right">
 				<p class="main_title"><img src="../images/main_title06.gif" alt="사진게시판 PHOTO BOARD" /><a href="/space/sub04.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 				<ul class="main_photo_list">
@@ -243,30 +252,35 @@ if(cookies!=null){
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
+					
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
+					
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
+					
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
+					
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
 							<dd><a href="">마포 구립 장애인...</a></dd>
 						</dl>
 					</li>
+					
 					<li>
 						<dl>
 							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
@@ -276,6 +290,7 @@ if(cookies!=null){
 				</ul>
 			</div>
 		</div>
+		
 		<%@ include file="../include/quick.jsp"%>
 	</div>
 

@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
-
 <html>
- <body>
+<body>
 	<center>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
@@ -477,19 +475,7 @@
 				<br />
 				회사의 개인정보보호정책은 관련 법률 및 고시의 변경 또는 내부 운영방침의 변경에 따라 변경될 수 있습니다. 회사의 개인정보보호정책이 수정될 경우 변경된 사항은 홈페이지를 통하여 공지합니다. <br />
 				</div>
-				
-				<!-- 
-					<p style="text-align:center; margin-bottom:20px;">
-					<input type="checkbox" name="agreement1" value="">
-					이용약관과 개인정보취급방침에 동의합니다.
-				</p>
-
-				<p style="text-align:center; margin-bottom:20px">
-					<a href="join02.jsp"><img src="../images/btn01.gif" /></a>&nbsp;&nbsp;
-					<a href="#"><img src="../images/btn02.gif" /></a>
-				</p> 
-				-->
-				
+			
 			<form action="join02.jsp" id="agree">
 				<p style="text-align:center; margin-bottom:20px;">
 					<input type="checkbox" name="agreement1" value="">
@@ -505,25 +491,19 @@
 			
 			<script>
 			function agree(){
-			 var chk = document.getElementById('agree');
-			 if(chk.agreement1.checked==true){
-				 chk.submit();
-			 }
-			 else
-				 alert("약관에 동의를 해야합니다.");
+				var chk = document.getElementById('agree');
+			 	if(chk.agreement1.checked==true){
+					chk.submit();
+			}
+			else
+				alert("약관에 동의를 해야합니다.");
 			}
 			</script>
-			
-			
-			
-			
-
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>
-	</div>
 	
-
+	</div>
 	<%@ include file="../include/footer.jsp" %>
 	</center>
  </body>

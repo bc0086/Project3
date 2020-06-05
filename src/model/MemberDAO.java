@@ -170,29 +170,58 @@ public class MemberDAO {
 		return affected;
 	}
 	
-		// 아이디찾기
-	   public Map<String, String> getIdMap(String name, String email) {
+		// 아이디찾기 
+	    public Map<String, String> getIdMap(String name, String email) {
 
-	      Map<String, String> maps = new HashMap<String, String>();
+	    Map<String, String> maps = new HashMap<String, String>();
 
-	      String query = "SELECT id FROM " + " member WHERE name=? and email=?";
-	      try {
-	         psmt = con.prepareStatement(query);
-	         psmt.setString(1, name);
-	         psmt.setString(2, email);
-	         rs = psmt.executeQuery();
+	    String query = "SELECT id FROM member WHERE name=? and email=?";
+		    try {
+		        psmt = con.prepareStatement(query);
+		        psmt.setString(1, name); // 쿼리문의 1번쨰 ?에 들어갈 넘 (1은 첫번쨰임을, name은 db테일블의 컬럼명임.)
+		        psmt.setString(2, email); // 쿼리문의 2번째 ?에 들어갈 넘
+		        rs = psmt.executeQuery(); // rs: 위의 psmt의 실행결과값을 받을 넘
+	
+		        if (rs.next()) { // rs로 찾아낸 즉, select id의 모든값을 읽어냄.
+		        	maps.put("id", rs.getString("id")); // select id의 값을 map의 임의변수(키값) id에 셋팅 
+		        } 
+		        else {
+		        	System.out.println("결과셋이 없습니다.");
+		        }
+		    } 
+		    catch (Exception e) {
+		        System.out.println("getMemberDTO오류");
+		        e.printStackTrace();
+		    }
+		    
+		    return maps;
+	    }
+	    
+	    // 비밀번호찾기
+	    public Map<String, String> getPwMap(String id, String name, String email) {
 
-	         if (rs.next()) {
-	            maps.put("id", rs.getString("id"));
-	         } else {
-	            System.out.println("결과셋이 없습니다.");
-	         }
-	      } catch (Exception e) {
-	         System.out.println("getMemberDTO오류");
-	         e.printStackTrace();
-	      }
+	    Map<String, String> maps = new HashMap<String, String>();
 
-	      return maps;
-
-	   }
+	    String query = "SELECT pass FROM member WHERE id=? AND name=? AND email=?";
+		    try {
+		        psmt = con.prepareStatement(query);
+		        psmt.setString(1, id);
+		        psmt.setString(2, name); 
+		        psmt.setString(3, email); 
+		        rs = psmt.executeQuery(); 
+	
+		        if (rs.next()) { 
+		        	maps.put("pw", rs.getString("pass"));  
+		        } 
+		        else {
+		        	System.out.println("결과셋이 없습니다.");
+		        }
+		    } 
+		    catch (Exception e) {
+		        System.out.println("getMemberDTO오류");
+		        e.printStackTrace();
+		    }
+	
+		    return maps;
+	    }
 }

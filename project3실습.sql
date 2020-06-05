@@ -24,5 +24,10 @@ primary key(id)member
 );
 member
 DROP TABLE member;
+
+SELECT id FROM member WHERE NAME="진병찬" AND email="chan@naver.com";
+
 #더미데이터 삽입	
 INSERT INTO member (id, pass, name, pnum, hnum, email, addr) VALUES ('kosmo', '1234', '코스모61기', '', '010-0000-0001', 'kosmo61@naver.com', '서울시 금천구 월드메르디앙2차');
+
+SELECT pass FROM member WHERE id="kos1" AND NAME="kosmo" AND email="bc0086@naver.com";

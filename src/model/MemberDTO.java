@@ -3,9 +3,9 @@ package model;
 import java.sql.Date;
 
 /*
-DTO객체(Data Transfer Object)
-	: 데이터를 저장하기 위한 객체로 멤버변수, 생성자, getter/setter
-	메소드를 가지고 있는 클래스로 일반적인 자바빈(Bean)규약을 따른다.
+	DTO객체(Data Transfer Object)
+		: 데이터를 저장하기 위한 객체로 멤버변수, 생성자, getter/setter
+		메소드를 가지고 있는 클래스로 일반적인 자바빈(Bean)규약을 따른다.
 */
 public class MemberDTO {
 	
@@ -20,9 +20,7 @@ public class MemberDTO {
 	private java.sql.Date regidate;
 
 	// 기본 생성자
-	public MemberDTO() {
-		
-	}
+	public MemberDTO() {}
 	
 	// 인자 생성자
 	public MemberDTO(String id, String pass, String name, String pnum, String hnum, String email, String addr, Date regidate) {
@@ -102,8 +100,8 @@ public class MemberDTO {
 	}
 
 	/*
-	 Object클래스에서 제공하는 메소드로 객체를 문자열형태로 변형해서 반환해주는 역할을 한다.
-	 toString()메소드를 오버라이딩하면 객체 자체를 그대로 print()하는것이 가능하다. 
+		Object클래스에서 제공하는 메소드로 객체를 문자열형태로 변형해서 반환해주는 역할을 한다.
+		toString()메소드를 오버라이딩하면 객체 자체를 그대로 print()하는것이 가능하다. 
 	 */
 	@Override
 	public String toString() {
@@ -112,6 +110,4 @@ public class MemberDTO {
 	}
 	
 	// getter/setter
-	
-	
 }
