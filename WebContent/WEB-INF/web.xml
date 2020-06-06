@@ -29,6 +29,17 @@
   		<servlet-name>MainController</servlet-name>
   		<url-pattern>/main/main.do</url-pattern>
   	</servlet-mapping>
+  	
+  	<!-- 게시판 페이지처리에 사용할 상수 -->
+	<context-param>
+		<param-name>PAGE_SIZE</param-name>
+		<param-value>10</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>BLOCK_PAGE</param-name>
+		<param-value>5</param-value>
+	</context-param>
   
   	<welcome-file-list>
     	<welcome-file>index.html</welcome-file>

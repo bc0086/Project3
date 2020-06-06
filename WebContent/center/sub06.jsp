@@ -27,7 +27,7 @@
 					<p class="con_tit"><img src="../images/center/sub07_tit01.gif" alt="오시는길" /></p>
 					
 					<!-- 맵 API -->
-					<div id="map" style="width:500px;height:400px;"></div>
+					<div id="map" style="width:700px;height:400px;"></div>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78db85dbed7e80b54f5e797fabb30829"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
