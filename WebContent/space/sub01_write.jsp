@@ -7,8 +7,8 @@
 <%@ include file="../include/isFlag.jsp" %>
 
 <% 
-// 자유게시판, 질문과 답변만 글쓰기 가능함.
-if(!(bname.equals("freeboard") || bname.equals("photoboard"))){ 
+// 게시판과 정보자료실만 글쓰기 가능함.
+if(!(bname.equals("freeboard") || bname.equals("photoboard") || bname.equals("databoard"))){ 
 	JavascriptUtil.jsAlertBack("해당 게시판은 글쓰기를 할 수 없습니다.", out);
 	return;
 }
@@ -57,12 +57,12 @@ if(!(bname.equals("freeboard") || bname.equals("photoboard"))){
 	}
 </script>
 
-<form name="writeFrm" method="post" action="WriteProc.jsp" 
-	onsubmit="return checkValidate(this);">
+<form name="writeFrm" method="post" action="WriteProc.jsp?bname=<%=bname %>" 
+	onsubmit="return checkValidate(this);" enctype="multipart/form-data">
 <table class="table table-bordered">
 
 <!-- 글작성시 게시판 구분을 위한 flag추가 -->
-<input type="hidden" name="bname" value="<%=bname %>" />
+<input type="hidden" name="bname" />
 
 <colgroup>
 	<col width="20%"/>
@@ -108,12 +108,13 @@ if(!(bname.equals("freeboard") || bname.equals("photoboard"))){
 		<th class="text-center" style="vertical-align:middle;">내용</th>
 		<td><textarea rows="10" class="form-control" name="content"></textarea></td>
 	</tr>
-	<!-- 
-	<tr>
-		<th class="text-center" style="vertical-align:middle;">첨부파일</th>
-		<td><input type="file" class="form-control" /></td>
-	</tr> 
-	-->
+	
+	<% if((bname.equals("databoard"))){ %>
+		<tr>
+			<th class="text-center" style="vertical-align:middle;">첨부파일</th>
+			<td><input type="file" class="form-control" name="Attachment" /></td>
+		</tr> 
+	<%} %>
 </tbody>
 </table> 
 

@@ -127,7 +127,7 @@ public class BbsDAO {
 				dto.setPostDate(rs.getDate("postdate"));
 				dto.setId(rs.getString("id"));
 				dto.setVisitcount(rs.getString("visitcount"));
-
+				
 				// 저장된 DTO객체를 List컬렉션에 추가
 				bbs.add(dto);
 			}
@@ -214,15 +214,16 @@ public class BbsDAO {
 			 	자동증가 컬럼으로 지정한다. 자동증가 컬럼은 임의의 값을 
 			 	입력하는것보다 쿼리에서 제외시켜 주는것이 좋다.
 			 */
-			String query = "INSERT INTO multi_board ( " + " title,content,id,visitcount,bname) " + " VALUES ( "
-					+ " ?, ?, ?, 0, ?)";
+			String query = "INSERT INTO multi_board ( " + " title,content,file,id,bname) " + " VALUES ( "
+					+ " ?, ?, ?,?,?)";
 
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getId());
-			psmt.setString(4, dto.getBname());
-
+			psmt.setString(3, dto.getFile());
+			psmt.setString(4, dto.getId());
+			psmt.setString(5, dto.getBname());
+		
 			affected = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insert중 예외발생");

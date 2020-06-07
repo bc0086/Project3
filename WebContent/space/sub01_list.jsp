@@ -81,6 +81,8 @@ param.put("end", end);
 // 조건에 맞는 레코드를 select하여 결과셋을 List컬렉션으로 반환받음
 List<BbsDTO> bbs = dao.selectListPage(param);
 
+/* String grade = session.getAttribute("USER_GRADE").toString(); */
+
 // DB자원해제
 dao.close();
 %>
@@ -148,7 +150,9 @@ dao.close();
 		<th class="text-center">작성자</th>
 		<th class="text-center">작성일</th>
 		<th class="text-center">조회수</th>
-		<!-- <th class="text-center">첨부</th> -->
+		<%if((bname.equals("databoard"))){%>
+			<th class="text-center">첨부</th>
+		<%} %>
 	</tr>
 	</thead>
 	
@@ -198,20 +202,29 @@ dao.close();
 			<td class="text-center"><%=dto.getId() %></td>
 			<td class="text-center"><%=dto.getPostDate() %></td>
 			<td class="text-center"><%=dto.getVisitcount() %></td>
+							
+                              <td class="text-center">
+                                 
+                              <a
+                                 href="../space/DownLoad.jsp?filename=<%=dto.getFile()%>&num=<%=dto.getNum()%>">
+                                    <img src="../images/disk.png" width="20" alt="" />
+                              </a> 
+                                 <%
+                                    }
+                                 %>
+                              </td>
+                              <% } %>
 		</tr>
-	<%
-		}
-	}
-	%>
+
 	</tbody>
 	</table>
 </div>
 
 <div class="row text-right" style="padding-right:50px;">
 	<div class="col text-right"></div>
-	<!-- 자유게시판과 사진게시판에서만 글쓰기버튼 보임처리 -->
-	<% if(bname.equals("freeboard") || bname.equals("photoboard")){ %>
 	
+	<!-- 자유게시판과 사진게시판에서만 글쓰기버튼 보임처리 -->
+	<% if(bname.equals("databoard") || bname.equals("photoboard") || bname.equals("freeboard")){ %>
 		<!-- 각종 버튼 부분 -->
 		<!-- <button type="reset" class="btn">Reset</button> -->
 		<button type="button" class="btn btn-default" 
@@ -222,6 +235,7 @@ dao.close();
 		<button type="button" class="btn btn-warning">리스트보기</button>
 		<button type="submit" class="btn btn-danger">전송하기</button> -->
 	<%} %>
+	
 	</div>
 </div>
 <div class="row text-center">

@@ -18,6 +18,15 @@ public class MemberDTO {
 	private String email;
 	private String addr;
 	private java.sql.Date regidate;
+	private String grade;
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 
 	// 기본 생성자
 	public MemberDTO() {}

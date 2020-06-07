@@ -121,7 +121,7 @@ public class MemberDAO {
 		
 		Map<String, String> maps = new HashMap<String, String>();
 		
-		String query = "SELECT id, pass, name FROM "
+		String query = "SELECT id, pass, name, grade FROM "
 				+ " member WHERE id=? AND pass=?";
 		
 		try{
@@ -134,6 +134,7 @@ public class MemberDAO {
 				maps.put("id", rs.getString(1));
 				maps.put("pass", rs.getString("pass"));
 				maps.put("name", rs.getString("name"));
+				maps.put("grade", rs.getString("grade"));
 			}
 			else {
 				System.out.println("결과셋이 없습니다.");

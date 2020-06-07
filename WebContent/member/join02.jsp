@@ -183,7 +183,6 @@
 				<p class="join_title"><img src="../images/join_tit03.gif" alt="회원정보입력" /></p>
 	
 		<% 
-		// 시도중. 
 		if(session.getAttribute("name")==null){
 		%>
 			<script>

@@ -40,7 +40,6 @@ dao.close();
 				</div>
 				
 				<div>
-
 <script>
 	// 유기명 함수
 	function checkValidate(frm) { // frm이라는 변수는 form태그의 dom객체이다.

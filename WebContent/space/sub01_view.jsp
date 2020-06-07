@@ -100,12 +100,12 @@ dao.close();
 			</td>
 		</tr>
 		
-		<!-- 
-		<tr>
-			<th class="text-center" style="vertical-align:middle;">첨부파일</th>
-			<td colspan="3">파일명.jpg <a href="">[다운로드]</a></td>
-		</tr> 
-		-->
+		<% if(bname.equals("databoard")){ %>
+			<tr>
+				<th class="text-center" style="vertical-align:middle;">첨부파일</th>
+				<td colspan="3">파일명.jpg <a href="">[다운로드]</a></td>
+			</tr> 
+		<%} %>
 	</tbody>
 </table>
 </form> 

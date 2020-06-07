@@ -31,6 +31,8 @@ if(memberInfo.get("id") != null){
 	session.setAttribute("USER_ID", memberInfo.get("id"));
 	session.setAttribute("USER_PW", memberInfo.get("pass"));
 	session.setAttribute("USER_NAME", memberInfo.get("name"));
+	session.setAttribute("USER_GRADE", memberInfo.get("grade"));
+	
 	
 	if(id_save == null){		
 		// 아이디저장하기에 체크하지 않았을때 쿠키를 삭제하기 위해 빈 쿠키를 생성.

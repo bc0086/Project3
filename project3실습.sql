@@ -60,7 +60,7 @@ INSERT INTO multi_board (title, content, id) VALUES ('제목입니다4', '내용
 INSERT INTO multi_board (title, content, id) VALUES ('제목입니다5', '내용입니다5', 'master');
 
 #bname추가
-ALTER TABLE multi_board ADD bname VARCHAR(200) DEFAULT '0';
+ALTER TABLE member ADD grade VARCHAR(200) DEFAULT 'normal';
 
 /*
 	기존의 게시판을 멀티게시판으로 변경
@@ -79,7 +79,7 @@ INSERT INTO multi_board (title, content, id, bname)
 	
 -- 자유게시판에 글쓰기
 INSERT INTO multi_board (title, content, id, bname)
-	VALUE ('여긴 공지사항', '내용없음', 'kosmo', 'notice');
+	VALUE ('여긴 공지사항1', '내용없음', 'kosmo', 'notice');
 	
 -- 자유게시판 리스트보기
 SELECT * FROM multi_board WHERE bname='freeboard';

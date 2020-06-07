@@ -25,9 +25,15 @@ public class BbsDTO {
 
 	// 멀티게시판 구현을 위한 멤버변수 추가 : bname(게시판을 구분하기 위한 컬럼)
 	private String bname;
-	
+	private String file;
 	// getter setter
 	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	public String getEmail() {
 		return email;
 	}
