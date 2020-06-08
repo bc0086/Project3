@@ -321,10 +321,4 @@ public class BbsDAO {
 
 		return affected;
 	}
-	
-	
-	
-	
-	
-	
 }

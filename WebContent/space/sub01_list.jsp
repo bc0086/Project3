@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="util.PagingUtil"%>
 <%@page import="model.BbsDTO"%>
 <%@page import="java.util.List"%>
@@ -86,6 +87,7 @@ List<BbsDTO> bbs = dao.selectListPage(param);
 // DB자원해제
 dao.close();
 %>
+
 <!DOCTYPE html>
 <html lang="en">
  <body>
@@ -140,7 +142,9 @@ dao.close();
 		<col width="120px"/>
 		<col width="120px"/>
 		<col width="80px"/>
+		<%if((bname.equals("databoard"))){%>
 		<col width="50px"/>
+		<%} %>
 	</colgroup>
 	
 	<thead>
@@ -202,19 +206,18 @@ dao.close();
 			<td class="text-center"><%=dto.getId() %></td>
 			<td class="text-center"><%=dto.getPostDate() %></td>
 			<td class="text-center"><%=dto.getVisitcount() %></td>
-							
-                              <td class="text-center">
-                                 
-                              <a
-                                 href="../space/DownLoad.jsp?filename=<%=dto.getFile()%>&num=<%=dto.getNum()%>">
-                                    <img src="../images/disk.png" width="20" alt="" />
-                              </a> 
-                                 <%
-                                    }
-                                 %>
-                              </td>
-                              <% } %>
+			<%if((bname.equals("databoard"))){%>
+                <td class="text-center">
+                    <a href="../space/Download2.jsp?filename=<%=dto.getFile()%>&num=<%=dto.getNum()%>">
+                        <img src="../images/disk.png" width="20" alt="" />
+                    </a> 
+                </td>
+            <%} %>
 		</tr>
+    <% 
+    }
+	} 
+	%>
 
 	</tbody>
 	</table>
@@ -256,5 +259,6 @@ dao.close();
 
 	<%@ include file="../include/footer.jsp" %>
 	</center>
+
  </body>
 </html>

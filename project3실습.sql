@@ -60,7 +60,7 @@ INSERT INTO multi_board (title, content, id) VALUES ('제목입니다4', '내용
 INSERT INTO multi_board (title, content, id) VALUES ('제목입니다5', '내용입니다5', 'master');
 
 #bname추가
-ALTER TABLE member ADD grade VARCHAR(200) DEFAULT 'normal';
+ALTER TABLE multi_board ADD file VARCHAR(200);
 
 /*
 	기존의 게시판을 멀티게시판으로 변경
