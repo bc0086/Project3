@@ -1,8 +1,6 @@
 <%@page import="model.BbsDAO"%>
 <%@page import="model.BbsDTO"%>
 <%@page import="java.util.List"%>
-<%@page import="model.MyFileDAO"%>
-<%@page import="model.MyFileDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
