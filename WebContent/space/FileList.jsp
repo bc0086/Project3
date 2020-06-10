@@ -40,8 +40,7 @@ File[] fileList = file.listFiles();
 			<%=(int)Math.ceil(f.length() / 1024.0) %>Kb
 			&nbsp;&nbsp;
 			<a
-			href="Download1.jsp?fileName=<%=URLEncoder.encode(f.getName(),
-					"UTF-8") %>">[다운로드1-1]</a>
+			href="Download2.jsp?fileName=<%=URLEncoder.encode(f.getName(), "UTF-8") %>">[다운로드1-1]</a>
 		</li>
 	<%
 		fileCnt++;
@@ -50,7 +49,7 @@ File[] fileList = file.listFiles();
 	</ul>
 	
 	<h2>DB에 등록된 파일 리스트 보기</h2>
-	<a href="FileUploadMain.jsp">
+	<a href="sub01_write.jsp">
 		파일등록하기
 	</a>
 	<%
@@ -62,16 +61,15 @@ File[] fileList = file.listFiles();
 	<table border="1">
 	<% for(BbsDTO f : fileLists){ %>
 		<tr>
-			<td><%=f.getIdx() %></td>
-			<td><%=f.getName() %></td>
+			<td><%=f.getNum() %></td>
 			<td><%=f.getTitle() %></td>
-			<td><%=f.getInter() %></td>
-			<td><%=f.getOfile() %></td>
-			<td><%=f.getSfile() %></td>
-			<td><%=f.getPostdate() %></td>
+			<td><%=f.getId() %></td>
+			<td><%=f.getPostDate() %></td>
+			<td><%=f.getVisitcount() %></td>
+			<td><%=f.getFile() %></td>
 			<td><a
-			href="Download2.jsp?oName=<%=URLEncoder.encode(f.getOfile(), "UTF-8")%>
-			&sName=<%=URLEncoder.encode(f.getSfile(), "UTF-8")%>">[다운로드]</a></td>
+			href="Download2.jsp?bname=<%=URLEncoder.encode(f.getFile(), "UTF-8")%>">
+			[다운로드]</a></td>
 		</tr>
 	<% } %>
 	</table>

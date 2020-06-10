@@ -86,9 +86,9 @@ try{
 		파일명에 닷(.)이 2개 이상 포함 될수 있으므로 lastindexOf()로 마지막에
 		있는 점을 찾아온다. 해당 인덱스를 통해 확장자를 가져온다.
 	*/
-	int idx = -1;
-	idx = fileName.lastIndexOf(".");
-	realFileName = nowTime + fileName.substring(idx, fileName.length());
+	int num = -1;
+	num = fileName.lastIndexOf(".");
+	realFileName = nowTime + fileName.substring(num, fileName.length());
 	
 	/*
 		서버의 물리적경로와 생성된 파일명을 통해 File객체를 생성한다.
@@ -117,7 +117,7 @@ try{
 		dto.setFile(mr.getOriginalFileName("Attachment"));
 		
 		BbsDAO dao = new BbsDAO(application);
-		dao.myfileInsert(dto);
+		dao.multi_boardInsert(dto);
 		
 		response.sendRedirect("sub01_list.jsp");
 		///////////////////////////////////////////////

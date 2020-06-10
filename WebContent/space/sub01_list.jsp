@@ -86,6 +86,26 @@ List<BbsDTO> bbs = dao.selectListPage(param);
 
 // DB자원해제
 dao.close();
+
+
+
+
+
+
+/* 시도중 */
+// 업로드 폴더의 물리적 경로 가져오기
+String saveDirectory = application.getRealPath("/Upload");
+
+// 경로를 기반으로 File객체 생성
+File file = new File(saveDirectory);
+
+//listFiles()메소드를 통해 파일목록 얻어오기
+File[] fileList = file.listFiles();
+
+
+
+
+
 %>
 
 <!DOCTYPE html>
@@ -245,7 +265,7 @@ dao.close();
 	<div class="col">
 		<!-- 페이지번호 부분 -->
 		<ul class="pagination justify-content-center">
-			<%=PagingUtil.pagingBS4(totalRecordCount,pageSize, blockPage, nowPage, "sub01_list.jsp?" + queryStr) %>
+			<%=PagingUtil.pagingBS4(totalRecordCount,pageSize, blockPage, nowPage, "sub01_list.jsp" + queryStr) %>
 		</ul>	
 	</div>
 </div>
@@ -259,6 +279,5 @@ dao.close();
 
 	<%@ include file="../include/footer.jsp" %>
 	</center>
-
  </body>
 </html>

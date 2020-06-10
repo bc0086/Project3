@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 
 public class BbsDAO {
 	
@@ -54,6 +57,75 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	// 시도중
+	public BbsDAO() {
+
+		try {
+			Context initCtx = new InitialContext();
+
+			Context ctx = (Context)initCtx.lookup("java:comp/env");
+			
+			DataSource source = (DataSource)ctx.lookup("jdbc/myoracle");
+			
+			con = source.getConnection();
+			
+			System.out.println("DBCP 연결성공");
+		} 
+		catch (Exception e) {
+			System.out.println("DBCP 연결실패");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public List<BbsDTO> myFileList() {
+		
+		List<BbsDTO> fileList = new Vector<BbsDTO>();
+		
+		String query = " SELECT * FROM multi_board "
+				+ " WHERE 1=1 "
+				+ " ORDER BY num DESC";
+		System.out.println("query="+ query);
+		
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				BbsDTO dto = new BbsDTO();
+				dto.setNum(rs.getString(1));
+				dto.setTitle(rs.getString(3));
+				dto.setId(rs.getString(4));
+				dto.setPostDate(rs.getDate(5));
+				dto.setVisitcount(rs.getString(6));
+				dto.setFile(rs.getString(7));
+				
+				fileList.add(dto);
+			}
+		}
+		catch(Exception e) {
+			System.out.println("select시 예외발생");
+			e.printStackTrace();
+		}
+		return fileList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*
 	 	board테이블에 입력된 전체 레코드 갯수를 카운트하여 반환받는 메소드
@@ -320,5 +392,34 @@ public class BbsDAO {
 		}
 
 		return affected;
+	}
+	
+	
+	
+	
+	// 시도중 파일업로드
+	public int multi_boardInsert(BbsDTO dto) {
+		int affected = 0;
+		try {
+			String query = "INSERT INTO multi_board ( " 
+					+ " num, title, id, postdate, visitcount, file) "
+					+ " VALUES ( "
+					+ " SEQ_BBS_NUM.nextval, ?, ?, ?, ?, ?)";
+			 
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getId());
+			psmt.setDate(3, dto.getPostDate());
+			psmt.setString(4, dto.getVisitcount());
+			psmt.setString(5, dto.getFile());
+		
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("insert중 예외발생");
+			e.printStackTrace();
+		}
+		return affected;
+		
 	}
 }
