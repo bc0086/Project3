@@ -50,7 +50,7 @@ FileRenamePolicy policy = new DefaultFileRenamePolicy();
 
 //전송된 폼값을 저장하기 위한 변수생성
 MultipartRequest mr = null;
-String name = null; // 이름
+String content = null; // 이름
 String title = null; // 제목
 File oldFile = null;
 File newFile = null;
@@ -107,13 +107,13 @@ try{
 			폼값은 request 내장객체를 통해서가 아니라 MultipartRequest객체를
 			통해서 받는다.
 		*/
-		name = mr.getParameter("name");
+		content = mr.getParameter("content");
 		title = mr.getParameter("title");
 		
 		////////////////////////////////////////////
 		BbsDTO dto = new BbsDTO();
-		dto.setName(name);
 		dto.setTitle(title);
+		dto.setContent(content);
 		dto.setFile(mr.getOriginalFileName("Attachment"));
 		
 		BbsDAO dao = new BbsDAO(application);
