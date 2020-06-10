@@ -3,7 +3,7 @@
 <script src="../common/jquery/jquery-3.5.1.js"></script> 
    
 <%
-// 리퀘스트 내장객체를 이용하여 쿠키를 읽어온다.
+// 리퀘스트 내장객체를 이용하여 쿠키를 읽어온다..
 Cookie[] cookies = request.getCookies();
 
 // 쿠키에 저장된 아이디를 저장할 변수 생성
