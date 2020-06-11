@@ -91,8 +91,8 @@ dao.close();
 
 
 
+//시도중///////////////////////////////////////////////////
 
-/* 시도중 */
 // 업로드 폴더의 물리적 경로 가져오기
 String saveDirectory = application.getRealPath("/Upload");
 
@@ -102,6 +102,7 @@ File file = new File(saveDirectory);
 //listFiles()메소드를 통해 파일목록 얻어오기
 File[] fileList = file.listFiles();
 
+//시도중 끝/////////////////////////////////////////////////////
 
 
 
@@ -228,6 +229,7 @@ File[] fileList = file.listFiles();
 			<td class="text-center"><%=dto.getVisitcount() %></td>
 			<%if((bname.equals("databoard"))){%>
                 <td class="text-center">
+               
                     <a href="../space/Download2.jsp?filename=<%=dto.getFile()%>&num=<%=dto.getNum()%>">
                         <img src="../images/disk.png" width="20" alt="" />
                     </a> 
@@ -265,7 +267,7 @@ File[] fileList = file.listFiles();
 	<div class="col">
 		<!-- 페이지번호 부분 -->
 		<ul class="pagination justify-content-center">
-			<%=PagingUtil.pagingBS4(totalRecordCount,pageSize, blockPage, nowPage, "sub01_list.jsp" + queryStr) %>
+			<%=PagingUtil.pagingBS4(totalRecordCount,pageSize, blockPage, nowPage, "sub01_list.jsp?" + queryStr) %>
 		</ul>	
 	</div>
 </div>

@@ -19,6 +19,15 @@ public class MemberDTO {
 	private String addr;
 	private java.sql.Date regidate;
 	private String grade;
+	private String file;
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
 
 	public String getGrade() {
 		return grade;

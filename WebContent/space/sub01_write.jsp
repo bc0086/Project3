@@ -49,6 +49,23 @@ if(!(bname.equals("freeboard") || bname.equals("photoboard") || bname.equals("da
 			frm.content.focus(); // 입력란으로 포커스 이동
 			return false; // 전송되지 않도록 이벤트리스너로 false반환
 		}
+		
+		
+		
+		
+		
+		/* 시도중 업로드 */
+		<% if((bname.equals("databoard"))){ %>
+			if(frm.Attachment.value == "") {
+				alert("첨부파일이 없습니다."); // 경고창 띄움
+				frm.content.focus(); // 입력란으로 포커스 이동
+				return false; // 전송되지 않도록 이벤트리스너로 false반환
+			}
+		<%} %>
+		
+		
+		
+		
 	}
 	
 	// 무기명 함수
@@ -59,73 +76,73 @@ if(!(bname.equals("freeboard") || bname.equals("photoboard") || bname.equals("da
 
 <form name="writeFrm" method="post" action="WriteProc.jsp?bname=<%=bname %>" 
 	onsubmit="return checkValidate(this);" enctype="multipart/form-data">
-<table class="table table-bordered">
-
-<!-- 글작성시 게시판 구분을 위한 flag추가 -->
-<input type="hidden" name="bname" />
-
-<colgroup>
-	<col width="20%"/>
-	<col width="*"/>
-</colgroup>
-
-<tbody>
-	<!-- 
-	<tr>
-		<th class="text-center" 
-			style="vertical-align:middle;">작성자</th>
-		<td>
-			<input type="text" class="form-control" 
-				style="width:100px;" />
-		</td>
-	</tr>
+	<table class="table table-bordered">
 	
-	<tr>
-		<th class="text-center" 
-			style="vertical-align:middle;">이메일</th>
-		<td>
-			<input type="text" class="form-control" 
-				style="width:400px;" />
-		</td>
-	</tr>
+	<!-- 글작성시 게시판 구분을 위한 flag추가 -->
+	<input type="hidden" name="bname" />
 	
-	<tr>
-		<th class="text-center" 
-			style="vertical-align:middle;">패스워드</th>
-		<td>
-			<input type="text" class="form-control" 
-				style="width:200px;" />
-		</td>
-	</tr> 
-	-->
+	<colgroup>
+		<col width="20%"/>
+		<col width="*"/>
+	</colgroup>
 	
-	<tr>
-		<th class="text-center" style="vertical-align:middle;">제목</th>
-		<td><input type="text" class="form-control" name="title"/></td>
-	</tr>
-	
-	<tr>
-		<th class="text-center" style="vertical-align:middle;">내용</th>
-		<td><textarea rows="10" class="form-control" name="content"></textarea></td>
-	</tr>
-	
-	<% if((bname.equals("databoard"))){ %>
+	<tbody>
+		<!-- 
 		<tr>
-			<th class="text-center" style="vertical-align:middle;">첨부파일</th>
-			<td><input type="file" class="form-control" name="Attachment" /></td>
+			<th class="text-center" 
+				style="vertical-align:middle;">작성자</th>
+			<td>
+				<input type="text" class="form-control" 
+					style="width:100px;" />
+			</td>
+		</tr>
+		
+		<tr>
+			<th class="text-center" 
+				style="vertical-align:middle;">이메일</th>
+			<td>
+				<input type="text" class="form-control" 
+					style="width:400px;" />
+			</td>
+		</tr>
+		
+		<tr>
+			<th class="text-center" 
+				style="vertical-align:middle;">패스워드</th>
+			<td>
+				<input type="text" class="form-control" 
+					style="width:200px;" />
+			</td>
 		</tr> 
-	<%} %>
-</tbody>
-</table> 
-
-<div class="row text-center" style="">
-	<div class="col text-right">
-		<!-- 각종 버튼 부분 -->
-		<button type="submit" class="btn btn-danger">전송하기</button>
-		<button type="reset" class="btn">Reset</button>
-		<button type="button" class="btn btn-warning" onclick="location.href='sub01_list.jsp?bname=<%=bname %>';">리스트보기</button>
+		-->
+		
+		<tr>
+			<th class="text-center" style="vertical-align:middle;">제목</th>
+			<td><input type="text" class="form-control" name="title"/></td>
+		</tr>
+		
+		<tr>
+			<th class="text-center" style="vertical-align:middle;">내용</th>
+			<td><textarea rows="10" class="form-control" name="content"></textarea></td>
+		</tr>
+		
+		<% if((bname.equals("databoard"))){ %>
+			<tr>
+				<th class="text-center" style="vertical-align:middle;">첨부파일</th>
+				<td><input type="file" class="form-control" name="Attachment" /></td>
+			</tr> 
+		<%} %>
+	</tbody>
+	</table> 
+	
+	<div class="row text-center" style="">
+		<div class="col text-right">
+			<!-- 각종 버튼 부분 -->
+			<button type="submit" class="btn btn-danger">전송하기</button>
+			<button type="reset" class="btn">Reset</button>
+			<button type="button" class="btn btn-warning" onclick="location.href='sub01_list.jsp?bname=<%=bname %>';">리스트보기</button>
+		</div>
 	</div>
-</div>
 </form> 
 
 				</div>

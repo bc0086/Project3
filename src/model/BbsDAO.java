@@ -165,11 +165,9 @@ public class BbsDAO {
 		String query = " SELECT * FROM multi_board WHERE bname='"+map.get("bname") +"'";
 		if(map.get("Word")!= null)
 		{
-			query +=" AND "+map.get("Column") +" "
-					+" LIKE '%"+map.get("Word") + "%' ";
+			query +=" AND "+map.get("Column") +" " +" LIKE '%"+map.get("Word") + "%' ";
 		}
-		query += " "
-			+"		ORDER BY num DESC LIMIT ?, ?";
+		query += " " +"	ORDER BY num DESC LIMIT ?, ?";
 		
 		System.out.println("쿼리문:"+ query);
 		
@@ -199,6 +197,7 @@ public class BbsDAO {
 				dto.setPostDate(rs.getDate("postdate"));
 				dto.setId(rs.getString("id"));
 				dto.setVisitcount(rs.getString("visitcount"));
+				dto.setFile(rs.getString("file"));
 				
 				// 저장된 DTO객체를 List컬렉션에 추가
 				bbs.add(dto);
@@ -295,6 +294,7 @@ public class BbsDAO {
 			psmt.setString(3, dto.getFile());
 			psmt.setString(4, dto.getId());
 			psmt.setString(5, dto.getBname());
+		
 		
 			affected = psmt.executeUpdate();
 		} catch (Exception e) {
