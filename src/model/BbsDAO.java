@@ -345,6 +345,7 @@ public class BbsDAO {
 				// 테이블 join으로 컬럼추가
 				dto.setName(rs.getString("name"));
 				dto.setEmail(rs.getString("email"));
+				dto.setFile(rs.getString("file"));
 			}
 		} catch (Exception e) {
 			System.out.println("상세보기시 예외발생");
