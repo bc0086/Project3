@@ -133,7 +133,7 @@ File[] fileList = file.listFiles();
 <!-- 검색부분 -->
 <form class="form-inline ml-auto" name="searchFrm" method="get">	
 
-<!-- 검색시 필수파라미터인 bname이 전달되야 한다. -->
+<!-- 검색 시 필수파라미터인 bname이 전달되야 한다. -->
 <input type="hidden" name="bname" value="<%=bname %>" />
 	<div class="form-group">
 		<select name="searchColumn" class="form-control">

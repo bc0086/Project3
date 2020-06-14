@@ -60,6 +60,8 @@ INSERT INTO multi_board (title, content, id) VALUES ('제목입니다4', '내용
 INSERT INTO multi_board (title, content, id) VALUES ('제목입니다5', '내용입니다5', 'master');
 
 #bname추가
+ALTER TABLE multi_board ADD bname VARCHAR(200);
+
 ALTER TABLE multi_board ADD file VARCHAR(200);
 
 /*
